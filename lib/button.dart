@@ -2,19 +2,32 @@ import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
   final String text;
-  VoidCallback onPressed;
+  final VoidCallback onPressed;
+
   MyButton({
-    super.key,
+    Key? key,
     required this.text,
     required this.onPressed,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
+    return ElevatedButton(
       onPressed: onPressed,
-      color: Theme.of(context).primaryColor ,
-      child: Text(text),
+      style: ElevatedButton.styleFrom(
+        primary: Theme.of(context).primaryColor,
+        onPrimary: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 16,
+        ),
+      ),
     );
   }
 }
